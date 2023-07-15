@@ -3,6 +3,9 @@ package com.exam.sbb.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 @Controller
 public class MainController {
   @RequestMapping("/sbb")
@@ -41,5 +44,50 @@ public class MainController {
            <h1>입력된 나이 : %d</h1>
            <h1>안녕하세요. GET 방식으로 오신걸 환영합니다.</h1>           
            """.formatted(age);
+  }
+  @GetMapping("/plus")
+  @ResponseBody
+  public String plusNum(int a, int b) {
+    return """
+           <h1>%d</h1>           
+           """.formatted(a + b);
+  }
+
+  @GetMapping("/minus")
+  @ResponseBody
+  public String minusNum(int a, int b) {
+    return """
+           <h1>%d</h1>           
+           """.formatted(a - b);
+  }
+  private int a = 0;
+  @GetMapping("/increase")
+  @ResponseBody
+  public int increaseNum() {
+
+    return a++;
+  }
+
+  @GetMapping("/gugudan")
+  @ResponseBody
+  public String gugudan(Integer dan, Integer limit) {
+    if (dan == null) {
+      dan = 9;
+    }
+    if (limit == null) {
+      limit = 9;
+    }
+
+    final Integer finaldan = dan;
+    return IntStream.rangeClosed(1, limit)
+        .mapToObj(i -> "%d * %d = %d".formatted(finaldan, i, finaldan * i))
+        .collect(Collectors.joining("<br>"));
+  }
+
+  @GetMapping("/increase")
+  @ResponseBody
+  public int increaseNum() {
+
+    return a++;
   }
 }
