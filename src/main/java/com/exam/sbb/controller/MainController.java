@@ -2,6 +2,7 @@ package com.exam.sbb.controller;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -177,5 +178,32 @@ public class MainController {
     articles.remove(id - 1);
 
     return "%d번 글이 삭제되었습니다..".formatted(article.getId());
+  }
+  @AllArgsConstructor
+  @NoArgsConstructor
+  @Getter
+  @Setter
+  class Person {
+    private int id;
+    private int age;
+    private String name;
+
+
+  }
+
+//  @GetMapping("/addPerson")
+//  @ResponseBody
+//  public String addPerson(int id, int age, String name) {
+//    Person p = new Person(id, age, name);
+//
+//    return "id : %d, age : %d, name : %s입니다.".formatted(p.getId(), p.getAge(), p.getName());
+//  }
+
+  @GetMapping("/addPerson/{id}")
+  @ResponseBody
+  public String addPerson(@PathVariable Person p) {
+    //p = new Person(p.id, age, name);
+
+    return "id : %d, age : %d, name : %s입니다.".formatted(p.getId(), p.getAge(), p.getName());
   }
 }
