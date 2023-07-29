@@ -4,6 +4,7 @@ import com.exam.sbb.answer.Answer;
 import com.exam.sbb.answer.AnswerRepository;
 import com.exam.sbb.question.Question;
 import com.exam.sbb.question.QuestionRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +19,25 @@ public class AnswerRepositoryTests {
 
   @Autowired
   private AnswerRepository answerRepository;
+  private int lastSampleDataId;
+
+  @BeforeEach
+  void beforeEach() {
+    clearData();
+    createSampleData();
+  }
+
+  private void clearData() {
+    QuestionRepositoryTests.clearData(questionRepository);
+
+    questionRepository.disableForeignKeyChecks();
+    answerRepository.truncate();
+    questionRepository.enableForeignKeyChecks();
+  }
+
+  private void createSampleData() {
+    QuestionRepositoryTests.createSampleData(questionRepository);
+  }
 
   @Test
   void 저장() {
