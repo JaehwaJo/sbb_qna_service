@@ -1,9 +1,8 @@
 package com.exam.sbb.question;
 
 import com.exam.sbb.answer.Answer;
+import jakarta.persistence.*;
 import lombok.Data;
-
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,7 +13,7 @@ import java.util.List;
 public class Question {
   @Id // primary key
   @GeneratedValue(strategy = GenerationType.IDENTITY) // auto increment
-  private Integer id;
+  private Long id;
 
   @Column(length = 200) // varchar(200)
   private String subject;

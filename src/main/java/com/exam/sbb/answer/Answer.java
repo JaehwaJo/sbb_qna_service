@@ -1,17 +1,19 @@
 package com.exam.sbb.answer;
 
 import com.exam.sbb.question.Question;
-import lombok.Data;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.Setter;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
+@Getter
+@Setter
 @Entity
-@Data
 public class Answer {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer id;
+  private Long id;
 
   @Column(columnDefinition = "TEXT")
   private String content;
