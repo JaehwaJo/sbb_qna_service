@@ -31,7 +31,6 @@ public class UserService {
         throw new SignupEmailDuplicatedException("이미 사용중인 email 입니다.");
       }
     }
-
     return user;
   }
 }
