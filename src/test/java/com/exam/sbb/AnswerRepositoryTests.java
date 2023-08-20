@@ -24,7 +24,6 @@ public class AnswerRepositoryTests {
 
   @Autowired
   private AnswerRepository answerRepository;
-  private int lastSampleDataId;
 
   @BeforeEach
   @Transactional

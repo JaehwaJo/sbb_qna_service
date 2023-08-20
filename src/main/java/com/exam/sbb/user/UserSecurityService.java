@@ -1,12 +1,6 @@
 package com.exam.sbb.user;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
-
-import com.exam.sbb.user.SiteUser;
-import com.exam.sbb.user.UserRepository;
-import com.exam.sbb.user.UserRole;
+import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
@@ -15,7 +9,8 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
-import lombok.RequiredArgsConstructor;
+import java.util.ArrayList;
+import java.util.List;
 
 @RequiredArgsConstructor
 @Service
@@ -23,13 +18,13 @@ public class UserSecurityService implements UserDetailsService {
 
   private final UserRepository userRepository;
 
-  // 시큐리티가 특정 회원은 username을 받았을 때
+  // 시큐리티가 특정 회워은 username을 받았을 때
   // 그 username에 해당하는 회원정보를 얻는 수단.
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-    System.out.println("userDetails실행됨 : " + username);
+    System.out.println("UserDetails 실행됨 : " + username);
 
-    SiteUser siteUser = userRepository.findByusername(username).orElseThrow(() ->
+    SiteUser siteUser = userRepository.findByUsername(username).orElseThrow(() ->
         new UsernameNotFoundException("사용자를 찾을수 없습니다.")
     );
 
