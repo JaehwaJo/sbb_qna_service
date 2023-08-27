@@ -7,7 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <!-- Bootstrap 다운로드 ver -->
-<!--  <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">-->
+  <!--  <link rel="stylesheet" type="text/css" th:href="@{/bootstrap.min.css}">-->
 
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.0.2/css/bootstrap.min.css">
@@ -29,6 +29,10 @@
   <th:block layout:fragment="content"></th:block>
 </main>
 <!-- 기본 템플릿 안에 삽입될 내용 End -->
+
+<!-- 자바스크립트 Start -->
+<th:block layout:fragment="script"></th:block>
+<!-- 자바스크립트 End -->
 
 <footer class="footer bg-dark text-light">
   <div class="container py-3 d-flex justify-content-center">
