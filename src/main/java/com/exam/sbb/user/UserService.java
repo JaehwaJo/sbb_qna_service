@@ -6,8 +6,6 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Optional;
-
 @RequiredArgsConstructor
 @Service
 public class UserService {
@@ -34,6 +32,7 @@ public class UserService {
         throw new SignupEmailDuplicatedException("이미 사용중인 email 입니다.");
       }
     }
+
     return user;
   }
 

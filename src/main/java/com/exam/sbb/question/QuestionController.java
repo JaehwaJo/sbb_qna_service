@@ -26,7 +26,7 @@ import java.security.Principal;
 // 서비스는 컨트롤러를 몰라야 한다.
 // DB는 리포지터리를 몰라야 한다.
 // SPRING DATA JPA는 MySQL을 몰라야 한다.
-// SPRING DATA JPA(리포지터리) -> JPA -> 하이버네이트 -> JDBC -> MySQL Driver -> MySQL
+ // SPRING DATA JPA(리포지터리) -> JPA -> 하이버네이트 -> JDBC -> MySQL Driver -> MySQL
 public class QuestionController {
   // @Autowired 필드 주입
   private final QuestionService questionService;
