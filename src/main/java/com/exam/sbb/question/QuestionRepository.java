@@ -26,6 +26,7 @@ public interface QuestionRepository extends JpaRepository<Question, Integer>, Re
   Page<Question> findBySubjectContainsOrContentContainsOrAuthor_usernameContains(String kw, String kw_, String kw__, Pageable pageable);
 
   Page<Question> findDistinctBySubjectContainsOrContentContainsOrAuthor_usernameContainsOrAnswerList_contentContains(String kw, String kw_, String kw__, String kw___, Pageable pageable);
+  Page<Question> findDistinctBySubjectContainsOrContentContainsOrAuthor_usernameContainsOrAnswerList_contentContainsOrAnswerList_Author_usernameContains(String kw, String kw_, String kw__, String kw___, String kw____, Pageable pageable);
 
   @Modifying
   @Transactional
