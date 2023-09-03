@@ -16,14 +16,14 @@
 
 ### 검색 기능
 #### 구현 : 질문 제목, 질문 내용, 질문 작성자
-1. 제목검색
+1. 질문 제목 검색
    ```sql
    SELECT Q.*
    FROM question AS Q
    WHERE Q.subject LIKE '%sbb%';
    ```
 
-2. 제목 + 내용 검색
+2. 질문 제목 + 질문 내용 검색
    ```sql
    SELECT Q.*
    FROM question AS Q
@@ -34,7 +34,7 @@
    );
    ```
 
-3. 제목 + 내용 검색 + 작성자
+3. 질문 제목 + 질문 내용 + 질문 작성자 검색
    ```sql
    SELECT Q.*
    FROM question AS Q
@@ -70,3 +70,47 @@
    ON Q.id = A.question_id
    GROUP BY Q.id;
    ```
+
+4. 질문 제목  + 질문 내용 + 질문 작성자 + 답변 내용 검색
+    ```sql
+    SELECT Q.*
+    FROM question AS Q
+    LEFT JOIN site_user AS SU
+    ON Q.author_id = SU.id
+    LEFT JOIN answer AS A
+    ON Q.id = A.question_id
+    WHERE (
+       Q.subject LIKE '%sbb에 대해서 알고 싶습니다.%'
+       OR
+       Q.content LIKE '%sbb에 대해서 알고 싶습니다.%'
+       OR
+       SU.username LIKE '%sbb에 대해서 알고 싶습니다.%'
+       OR
+       A.content LIKE '%sbb에 대해서 알고 싶습니다.%'
+    )
+    GROUP BY Q.id;
+    ```
+
+5. 질문 제목  + 질문 내용 + 질문 작성자 + 답변내용 + 답변 작성자 검색
+    ```sql
+    SELECT Q.*
+    FROM question AS Q
+    LEFT JOIN site_user AS SU
+    ON Q.author_id = SU.id
+    LEFT JOIN answer AS A
+    ON Q.id = A.question_id
+    LEFT JOIN site_user AS A_SU
+    ON A.author_id = A_SU.id
+    WHERE (
+        Q.subject LIKE '%admin%'
+        OR
+        Q.content LIKE '%admin%'
+        OR
+        SU.username LIKE '%admin%'
+        OR
+        A.content LIKE '%admin%'
+        OR
+        A_SU.username LIKE '%admin%'		
+    )
+    GROUP BY Q.id;
+    ```
